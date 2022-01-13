@@ -10,9 +10,18 @@ contract Election {
 
     // Read/write Candidates
     mapping(uint => Candidate) public candidates;
+    
+    // Store Candidates Count
+    uint public candidatesCount;
 
     // Constructor
     constructor () public {
-        candidate = "Candidate 1";
+        addCandidate("Candidate 1");
+        addCandidate("Candidate 2");
+    }
+
+    function addCandidate (string memory name) private {
+        candidatesCount ++;
+        candidates[candidatesCount] = Candidate(candidatesCount, name, 0);
     }
 }
